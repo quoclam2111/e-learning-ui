@@ -1,4 +1,4 @@
-import OTPCard from "../../components/auth/verify-otp/OTPCard"
+import OTPCard from "@/components/auth/verify-otp/OTPCard"
 
 export default function VerifyOTPPage() {
 

@@ -1,5 +1,5 @@
-import Sidebar from "../components/dashboard/Sidebar"
-import TopNavbar from "../components/dashboard/TopNavBar"
+import Sidebar from "@/components/dashboard/Sidebar"
+import TopNavbar from "@/components/dashboard/TopNavBar"
 
 export default function StudentLayout({ children }) {
   return (

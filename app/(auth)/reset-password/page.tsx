@@ -1,4 +1,4 @@
-import ResetPasswordCard from "../../components/auth/reset-password/ResetPasswordCard"
+import ResetPasswordCard from "@/components/auth/reset-password/ResetPasswordCard"
 
 export default function ResetPasswordPage() {
 

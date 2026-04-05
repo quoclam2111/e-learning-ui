@@ -1,4 +1,4 @@
-import ForgotPasswordCard from "../../components/auth/forgot-password/ForgotPasswordCard"
+import ForgotPasswordCard from "@/components/auth/forgot-password/ForgotPasswordCard"
 
 export default function ForgotPasswordPage() {
   return (

@@ -1,5 +1,5 @@
-import LoginForm from "../../components/auth/login/LoginForm"
-import OAuthButtons from "../../components/auth/login/OAuthButtons"
+import LoginForm from "@/components/auth/login/LoginForm"
+import OAuthButtons from "@/components/auth/login/OAuthButtons"
 
 import Link from "next/link"
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Plus } from "lucide-react";
 
 export default function TaskHeader() {
@@ -13,13 +14,13 @@ export default function TaskHeader() {
         </p>
       </div>
 
-      <button
-        type="button"
+      <Link
+        href="/admin/tasks/create"
         className="inline-flex items-center gap-2 rounded-full bg-indigo-700 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-800"
       >
         <Plus className="h-4 w-4" />
-        New Module
-      </button>
+        New Task
+      </Link>
     </div>
   );
 }

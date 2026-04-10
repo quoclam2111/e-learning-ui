@@ -14,7 +14,7 @@ import {
 import { usePathname } from "next/navigation";
 
 const TASK_NAV_ITEMS = [
-  { href: "#", label: "Overview", icon: LayoutGrid },
+  { href: "/admin/tasks/overview", label: "Overview", icon: LayoutGrid },
   { href: "#", label: "Members", icon: Users },
   { href: "/admin/tasks", label: "Schedule", icon: CalendarDays },
   { href: "#", label: "Resources", icon: FolderOpen },

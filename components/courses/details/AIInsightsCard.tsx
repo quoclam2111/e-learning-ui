@@ -9,8 +9,8 @@ export default function AIInsightsCard() {
         AI Curator Insights
       </h5>
       <p className="text-sm text-slate-600 dark:text-indigo-300 leading-relaxed">
-        Based on your previous performance in "Linear Algebra," we suggest
-        spending extra time on Module 3's attention matrices.
+        Based on your previous performance in &quot;Linear Algebra,&quot; we
+        suggest spending extra time on Module 3&apos;s attention matrices.
       </p>
       <Link
         className="inline-block mt-4 text-xs font-bold text-primary hover:underline"

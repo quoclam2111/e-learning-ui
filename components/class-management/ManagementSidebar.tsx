@@ -81,7 +81,7 @@ export default function ManagementSidebar({
           </div>
           <p className="text-sm font-medium leading-relaxed mb-4">
             Cohort performance is trending upwards. 3 students need intervention
-            on 'Schrödinger Equations'.
+            on &apos;Schrödinger Equations&apos;.
           </p>
           <button
             type="button"

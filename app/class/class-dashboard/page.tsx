@@ -1,11 +1,5 @@
-import ClassDashboardClient from "./components/ClassDashboardClient";
-import ClassDashboardHeader from "./components/ClassDashboardHeader";
+import ClassOverviewPage from "@/components/class-overview/ClassOverviewPage";
 
 export default function ClassDashboardPage() {
-  return (
-    <div>
-      <ClassDashboardHeader />
-      <ClassDashboardClient />
-    </div>
-  );
+  return <ClassOverviewPage />;
 }

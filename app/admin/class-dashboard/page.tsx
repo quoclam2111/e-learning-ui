@@ -1,4 +1,4 @@
-import ClassDashboardClient from "@/app/class/class-dashboard/components/ClassDashboardClient";
+import ClassDashboardClient from "./components/ClassDashboardClient";
 
 export default function ClassDashboardPage() {
   return <ClassDashboardClient />;

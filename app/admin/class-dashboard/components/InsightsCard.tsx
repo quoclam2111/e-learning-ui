@@ -2,7 +2,7 @@ import Card from "@/components/ui/Card";
 
 export default function InsightsCard() {
   return (
-    <Card className="flex flex-col justify-between bg-gradient-to-br from-blue-600 to-blue-800 p-6 text-white shadow-[0px_20px_40px_rgba(37,99,235,0.25)]">
+    <Card className="flex flex-col justify-between bg-linear-to-br from-blue-600 to-blue-800 p-6 text-white shadow-[0px_20px_40px_rgba(37,99,235,0.25)]">
       <div>
         <h3 className="mb-2 text-xl font-bold">Curriculum Insights</h3>
         <p className="text-sm leading-relaxed text-blue-100/80">

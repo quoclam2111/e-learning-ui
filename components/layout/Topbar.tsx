@@ -33,12 +33,17 @@ export default function Topbar() {
           <nav className="hidden items-center gap-6 md:flex">
             {NAV_ITEMS.map((item) => {
               const isTaskNavItem = item.href === "/admin/tasks/list";
-              const isActive = isTaskNavItem
-                ? pathname.startsWith("/admin/tasks/")
-                : pathname === item.href;
+              const isClassNavItem = item.href === "/class/class-dashboard";
+
+              const isActive = isClassNavItem
+                ? pathname.startsWith("/class/")
+                : isTaskNavItem
+                  ? pathname.startsWith("/admin/tasks/")
+                  : pathname === item.href;
+
               const linkClassName = isActive
-                ? "border-b-2 border-indigo-600 pb-1 text-sm font-semibold text-indigo-600 dark:text-indigo-400"
-                : "text-sm font-medium text-slate-500 transition hover:text-indigo-500 dark:text-slate-400";
+                ? "relative inline-flex -translate-y-1 items-center text-base font-bold text-indigo-600 transition-transform after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-current after:opacity-100 after:content-[''] dark:text-indigo-400"
+                : "relative inline-flex items-center text-sm font-medium text-slate-500 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-current after:opacity-0 after:transition-opacity after:content-[''] hover:text-indigo-600 hover:after:opacity-100 dark:text-slate-400 dark:hover:text-indigo-400";
 
               return (
                 <Link

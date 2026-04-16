@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { BookOpen, Brain, Building2, Cpu, Sigma, Terminal } from "lucide-react";
 
 import Card from "@/components/ui/Card";
@@ -15,13 +16,15 @@ function statusClassName(tone: ClassStatusTone) {
     : "bg-white text-slate-500 border border-slate-200";
 }
 
-function iconForKey(key: ClassIconKey) {
-  if (key === "physics") return Cpu;
-  if (key === "calculus") return Sigma;
-  if (key === "dataStructures") return Terminal;
-  if (key === "urbanDesign") return Building2;
-  if (key === "cognitiveNeuro") return Brain;
-  return BookOpen;
+function ClassIcon({ iconKey }: { iconKey: ClassIconKey }) {
+  const className = "h-5 w-5";
+
+  if (iconKey === "physics") return <Cpu className={className} />;
+  if (iconKey === "calculus") return <Sigma className={className} />;
+  if (iconKey === "dataStructures") return <Terminal className={className} />;
+  if (iconKey === "urbanDesign") return <Building2 className={className} />;
+  if (iconKey === "cognitiveNeuro") return <Brain className={className} />;
+  return <BookOpen className={className} />;
 }
 
 type ClassCardProps = {
@@ -29,8 +32,6 @@ type ClassCardProps = {
 };
 
 export default function ClassCard({ item }: ClassCardProps) {
-  const Icon = iconForKey(item.icon);
-
   return (
     <Card className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 transition-all duration-300 hover:shadow-[0px_20px_40px_rgba(21,28,39,0.08)]">
       <div className="absolute right-0 top-0 p-4">
@@ -42,7 +43,7 @@ export default function ClassCard({ item }: ClassCardProps) {
       </div>
 
       <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-600 transition-transform group-hover:scale-110">
-        <Icon className="h-5 w-5" />
+        <ClassIcon iconKey={item.icon} />
       </div>
 
       <h3 className="mb-2 text-xl font-bold tracking-tight text-slate-900">
@@ -74,12 +75,12 @@ export default function ClassCard({ item }: ClassCardProps) {
           </span>
         </div>
 
-        <button
-          type="button"
+        <Link
+          href={`/class/classes/${item.id}/members`}
           className="cursor-pointer rounded-full bg-indigo-700 px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-indigo-200 transition-all hover:-translate-y-0.5 hover:bg-indigo-800 active:scale-95"
         >
           View Members
-        </button>
+        </Link>
       </div>
     </Card>
   );

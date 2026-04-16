@@ -60,9 +60,11 @@ export default function Sidebar() {
           const Icon = item.icon;
           const active =
             (item.label === "Overview" &&
-              pathname === "/class/class-dashboard") ||
-            (item.label === "Classes" && pathname === "/class/classes") ||
-            (item.label === "Schedule" && pathname === "/class/class-detail");
+              pathname.startsWith("/class/class-dashboard")) ||
+            (item.label === "Classes" &&
+              pathname.startsWith("/class/classes")) ||
+            (item.label === "Schedule" &&
+              pathname.startsWith("/class/class-detail"));
 
           return (
             <Link

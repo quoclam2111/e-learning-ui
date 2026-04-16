@@ -36,7 +36,8 @@ export default function Topbar() {
               const isClassNavItem = item.href === "/class/class-dashboard";
 
               const isActive = isClassNavItem
-                ? pathname.startsWith("/class/")
+                ? pathname.startsWith("/class/") ||
+                  pathname.startsWith("/analytics/")
                 : isTaskNavItem
                   ? pathname.startsWith("/admin/tasks/")
                   : pathname === item.href;

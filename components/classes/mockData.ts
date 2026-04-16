@@ -67,4 +67,15 @@ export const CLASSES_DIRECTORY_ITEMS: ClassDirectoryItem[] = [
       avatarUrl: "https://i.pravatar.cc/80?img=22",
     },
   },
+  {
+    id: "empty-class",
+    title: "Empty Class (Test)",
+    enrolledLabel: "0 Students",
+    status: { label: "ACTIVE", tone: "neutral" },
+    icon: "worldLiterature",
+    instructor: {
+      name: "TBD Instructor",
+      avatarUrl: "https://i.pravatar.cc/80?img=13",
+    },
+  },
 ];

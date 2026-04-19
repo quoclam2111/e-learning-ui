@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 type AiInsightsFooterProps = {
   classTitle: string;
 };
@@ -14,15 +12,15 @@ export default function AiInsightsFooter({
         Report.
       </p>
       <div className="flex gap-6 font-semibold">
-        <Link href="#" className="hover:text-indigo-600">
+        <a href="#" className="hover:text-indigo-600">
           Data Privacy
-        </Link>
-        <Link href="#" className="hover:text-indigo-600">
+        </a>
+        <a href="#" className="hover:text-indigo-600">
           AI Ethics Statement
-        </Link>
-        <Link href="#" className="hover:text-indigo-600">
+        </a>
+        <a href="#" className="hover:text-indigo-600">
           Model Transparency
-        </Link>
+        </a>
       </div>
     </footer>
   );

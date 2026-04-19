@@ -34,13 +34,16 @@ export default function Topbar() {
             {NAV_ITEMS.map((item) => {
               const isTaskNavItem = item.href === "/admin/tasks/list";
               const isClassNavItem = item.href === "/class/class-dashboard";
+              const isCourseNavItem = item.href === "/admin/courses";
 
               const isActive = isClassNavItem
                 ? pathname.startsWith("/class/") ||
                   pathname.startsWith("/analytics/")
                 : isTaskNavItem
                   ? pathname.startsWith("/admin/tasks/")
-                  : pathname === item.href;
+                  : isCourseNavItem
+                    ? pathname.startsWith("/admin/courses")
+                    : pathname === item.href;
 
               const linkClassName = isActive
                 ? "relative inline-flex -translate-y-1 items-center text-base font-bold text-indigo-600 transition-transform after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-current after:opacity-100 after:content-[''] dark:text-indigo-400"

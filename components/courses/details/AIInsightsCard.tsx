@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Brain } from "lucide-react";
 
 export default function AIInsightsCard() {
@@ -12,12 +11,12 @@ export default function AIInsightsCard() {
         Based on your previous performance in &quot;Linear Algebra,&quot; we
         suggest spending extra time on Module 3&apos;s attention matrices.
       </p>
-      <Link
+      <a
         className="inline-block mt-4 text-xs font-bold text-primary hover:underline"
         href="#"
       >
         View Learning Path Analysis →
-      </Link>
+      </a>
     </div>
   );
 }

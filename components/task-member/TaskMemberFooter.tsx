@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { HelpCircle, LogOut } from "lucide-react";
 
 export default function TaskMemberFooter() {
@@ -15,29 +14,29 @@ export default function TaskMemberFooter() {
         </div>
 
         <div className="flex gap-8">
-          <Link
+          <a
             href="#"
             className="flex items-center gap-2 font-medium text-gray-500 transition-colors hover:text-[#2D2DE8]"
           >
             <HelpCircle className="h-4 w-4" />
             Help Center
-          </Link>
-          <Link
+          </a>
+          <a
             href="#"
             className="flex items-center gap-2 font-medium text-gray-500 transition-colors hover:text-red-500"
           >
             <LogOut className="h-4 w-4" />
             Sign Out
-          </Link>
+          </a>
         </div>
       </div>
 
       <div className="mx-auto mt-12 flex max-w-7xl flex-col justify-between gap-4 border-t border-gray-200 pt-8 text-center text-xs font-bold tracking-widest text-gray-400 uppercase md:flex-row md:text-left">
         <span>© 2024 Academic Curator Ecosystem</span>
         <div className="flex justify-center gap-6 md:justify-end">
-          <Link href="#">Privacy Protocol</Link>
-          <Link href="#">Academic Integrity</Link>
-          <Link href="#">API Access</Link>
+          <a href="#">Privacy Protocol</a>
+          <a href="#">Academic Integrity</a>
+          <a href="#">API Access</a>
         </div>
       </div>
     </footer>

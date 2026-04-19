@@ -36,10 +36,10 @@ export default function TaskMobileBottomNav() {
         <span className="text-[10px] font-bold">Schedule</span>
       </Link>
 
-      <Link href="#" className="flex flex-col items-center gap-1 text-outline">
+      <a href="#" className="flex flex-col items-center gap-1 text-outline">
         <User className="h-5 w-5" />
         <span className="text-[10px] font-bold">Profile</span>
-      </Link>
+      </a>
     </nav>
   );
 }

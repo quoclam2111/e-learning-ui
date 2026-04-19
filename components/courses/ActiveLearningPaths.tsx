@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { Sigma } from "lucide-react";
 
@@ -16,12 +15,12 @@ export default function ActiveLearningPaths() {
     <section>
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-semibold">Active Learning Paths</h3>
-        <Link
+        <a
           href="#"
           className="text-indigo-600 font-medium text-sm hover:underline"
         >
           See all paths
-        </Link>
+        </a>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

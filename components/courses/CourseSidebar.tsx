@@ -4,79 +4,151 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   BarChart3,
-  CalendarDays,
+  BookOpen,
+  ClipboardList,
+  FolderOpen,
   GraduationCap,
-  LayoutDashboard,
-  NotebookText,
-  Users,
+  Info,
+  MessageSquare,
+  NotebookPen,
+  Play,
+  PlayCircle,
+  TrendingUp,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const COURSE_NAV_ITEMS = [
-  { href: "/admin/courses", label: "Course Overview", icon: LayoutDashboard },
-  { href: "#", label: "Course Content", icon: NotebookText },
-  { href: "#", label: "Enrollments", icon: Users },
-  { href: "#", label: "Schedule", icon: CalendarDays },
-  { href: "#", label: "Instructors", icon: GraduationCap },
-  { href: "#", label: "Analytics", icon: BarChart3 },
+type NavItem = {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+  isActive?: (pathname: string) => boolean;
+};
+
+type NavGroup = {
+  title: string;
+  items: NavItem[];
+};
+
+const NAV_GROUPS: NavGroup[] = [
+  {
+    title: "Course",
+    items: [
+      {
+        href: "/admin/courses",
+        label: "Overview",
+        icon: Info,
+        isActive: (pathname) => pathname.startsWith("/admin/courses"),
+      },
+      {
+        href: "#",
+        label: "Curriculum",
+        icon: BookOpen,
+      },
+      {
+        href: "#",
+        label: "Resources",
+        icon: FolderOpen,
+      },
+    ],
+  },
+  {
+    title: "Learning",
+    items: [
+      {
+        href: "#",
+        label: "Continue Learning",
+        icon: PlayCircle,
+      },
+      {
+        href: "#",
+        label: "Assignments",
+        icon: ClipboardList,
+      },
+      {
+        href: "#",
+        label: "Notes",
+        icon: NotebookPen,
+      },
+    ],
+  },
+  {
+    title: "Progress",
+    items: [
+      {
+        href: "#",
+        label: "My Progress",
+        icon: TrendingUp,
+      },
+      {
+        href: "#",
+        label: "Performance",
+        icon: BarChart3,
+      },
+    ],
+  },
+  {
+    title: "Community",
+    items: [
+      {
+        href: "#",
+        label: "Discussions",
+        icon: MessageSquare,
+      },
+      {
+        href: "#",
+        label: "Instructors",
+        icon: GraduationCap,
+      },
+    ],
+  },
 ];
 
 export default function CourseSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 bg-slate-50 p-4 md:flex md:flex-col dark:bg-slate-950">
-      <div className="mb-6 px-2">
-        <div className="mb-2 flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-container text-on-primary">
-            <GraduationCap className="h-5 w-5" />
-          </div>
-          <div>
-            <h2 className="text-lg font-bold leading-tight text-slate-900 dark:text-slate-100">
-              Advanced Physics
+    <aside className="sticky top-16 z-40 hidden h-[calc(100vh-4rem)] w-72 shrink-0 overflow-hidden bg-[#f7f7fb] px-5 py-6 md:flex md:flex-col dark:bg-slate-900">
+      {/* Nav */}
+      <nav className="flex-1 space-y-5 leading-relaxed tracking-tight text-slate-700 dark:text-slate-300 overflow-hidden">
+        {NAV_GROUPS.map((group) => (
+          <div key={group.title}>
+            <h2 className="px-3 text-[0.6rem] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+              {group.title}
             </h2>
-            <p className="text-xs text-slate-500">PH-202</p>
+            <ul className="space-y-0.5">
+              {group.items.map((item) => {
+                const active = item.isActive ? item.isActive(pathname) : false;
+
+                const className = active
+                  ? "flex items-center gap-3 rounded-xl bg-indigo-100 px-3 py-2 text-indigo-700 font-semibold dark:bg-indigo-900/40 dark:text-indigo-300"
+                  : "flex items-center gap-3 rounded-xl px-3 py-2 text-slate-500 transition-colors hover:bg-indigo-50 hover:text-indigo-700 dark:text-slate-400 dark:hover:bg-indigo-900/20 dark:hover:text-indigo-300";
+
+                return (
+                  <li key={item.label}>
+                    <Link href={item.href} className={className}>
+                      <item.icon
+                        className="h-4 w-4 shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span className="text-sm">{item.label}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-        </div>
-      </div>
-
-      <nav className="flex flex-col gap-1">
-        {COURSE_NAV_ITEMS.map((item) => {
-          const Icon = item.icon;
-          const isActive =
-            item.href === "/admin/courses" &&
-            pathname.startsWith("/admin/courses");
-
-          return (
-            <Link
-              key={item.label}
-              href={item.href}
-              className={
-                isActive
-                  ? "flex items-center gap-3 rounded-full bg-indigo-100 px-4 py-3 text-indigo-700 transition-all duration-150 translate-x-1 dark:bg-indigo-900/30 dark:text-indigo-300"
-                  : "flex items-center gap-3 px-4 py-3 text-slate-500 transition-all hover:bg-indigo-50 hover:text-indigo-500 dark:text-slate-400"
-              }
-            >
-              <Icon className="h-4 w-4" />
-              <span>{item.label}</span>
-            </Link>
-          );
-        })}
+        ))}
       </nav>
 
-      <div className="mt-auto p-4 bg-indigo-600 rounded-2xl text-white relative overflow-hidden group">
-        <div className="relative z-10">
-          <p className="text-xs font-semibold uppercase tracking-wider mb-1 opacity-80">
-            Resources
-          </p>
-          <p className="text-sm mb-3">Access lecture notes and lab manuals.</p>
-          <button
-            type="button"
-            className="w-full py-2 bg-white text-indigo-600 rounded-lg text-xs font-bold hover:bg-slate-100 transition-colors"
-          >
-            View Resources
-          </button>
-        </div>
-        <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform" />
+      {/* CTA Button */}
+      <div className="mt-4 pt-4 border-t border-indigo-100 dark:border-slate-700">
+        <button
+          type="button"
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-indigo-700 shadow-sm"
+        >
+          <Play className="h-4 w-4" aria-hidden="true" />
+          Resume Last Lecture
+        </button>
       </div>
     </aside>
   );

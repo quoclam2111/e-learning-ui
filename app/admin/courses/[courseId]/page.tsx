@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import CourseDetailsView from "@/components/courses/details/CourseDetailsView";
+import CourseOverviewPage from "@/components/courses/overview/CourseOverviewPage";
 import { getCourseById } from "@/components/courses/mockData";
 
 type PageParams = { courseId: string };
@@ -15,5 +15,5 @@ export default async function AdminCourseDetailsPage({
 
   if (!course) notFound();
 
-  return <CourseDetailsView course={course} />;
+  return <CourseOverviewPage course={course} />;
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Calendar, CheckCircle2 } from "lucide-react";
 
 import type {
@@ -53,6 +54,10 @@ export default function AssignmentCard({
 }) {
   const meta = STATUS_META[assignment.status];
   const hasDescription = assignment.description.trim().length > 0;
+  const actionHref =
+    assignment.status === "submitted"
+      ? null
+      : `/admin/courses/assignments/${assignment.id}`;
 
   const cardClassName =
     assignment.status === "in_progress"
@@ -116,9 +121,15 @@ export default function AssignmentCard({
           {assignment.dueLabel}
         </div>
 
-        <button type="button" className={meta.actionClassName}>
-          {meta.actionLabel}
-        </button>
+        {actionHref ? (
+          <Link href={actionHref} className={meta.actionClassName}>
+            {meta.actionLabel}
+          </Link>
+        ) : (
+          <button type="button" className={meta.actionClassName}>
+            {meta.actionLabel}
+          </button>
+        )}
       </div>
     </article>
   );

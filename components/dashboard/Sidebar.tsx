@@ -37,6 +37,7 @@ export default function Sidebar({ role }: Props) {
 
   const items = menu[role];
   const isLecturer = role === "lecturer";
+  const isStudent = role === "student";
 
   // ✅ Chiều cao taskbar/topbar: h-16 = 64px
   // Nếu header của bạn cao khác, đổi 2 chỗ này:
@@ -47,32 +48,58 @@ export default function Sidebar({ role }: Props) {
       className={[
         // ✅ Đẩy xuống dưới header để không bị đè
         "hidden md:flex w-64 fixed left-0 top-16 flex-col py-6",
-        // ✅ Tr��� chiều cao header khỏi chiều cao sidebar
+        // ✅ Trừ chiều cao header khỏi chiều cao sidebar
         "h-[calc(100vh-64px)]",
+        isStudent ? "border-r border-slate-200 bg-slate-50" : "",
         // ✅ lecturer theo hình: nền trắng sạch
         isLecturer ? "bg-white" : "bg-slate-50",
       ].join(" ")}
     >
-      {/* Logo - giữ nguyên (nếu muốn lecturer bỏ logo cũng được) */}
-      <div className="px-6 mb-8 flex items-center gap-3">
-        <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white">
-          <span className="material-symbols-outlined">school</span>
+      {isStudent ? (
+        <div className="mb-8 px-4">
+          <div className="mb-1 flex items-center gap-3 px-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-sm">
+              <span className="material-symbols-outlined text-[20px]">
+                school
+              </span>
+            </div>
+            <div>
+              <h2 className="text-lg font-bold leading-tight text-slate-900">
+                Student Portal
+              </h2>
+              <p className="text-xs font-medium text-slate-500">
+                Learning Hub
+              </p>
+            </div>
+          </div>
         </div>
+      ) : (
+        <div className="mb-8 flex items-center gap-3 px-6">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 text-white">
+            <span className="material-symbols-outlined">school</span>
+          </div>
 
-        <div>
-          <h1 className="text-lg font-black text-gray-900">Academic Curator</h1>
-          <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">
-            Enterprise Learning
-          </p>
+          <div>
+            <h1 className="text-lg font-black text-gray-900">
+              Academic Curator
+            </h1>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
+              Enterprise Learning
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Menu */}
       <nav
         className={[
           "flex-1",
           // lecturer theo hình: padding giống “gọn”
-          isLecturer ? "px-6 space-y-2" : "px-2 space-y-1",
+          isLecturer
+            ? "px-6 space-y-2"
+            : isStudent
+              ? "px-4 space-y-1"
+              : "px-2 space-y-1",
         ].join(" ")}
       >
         {items.map((item) => {
@@ -107,6 +134,25 @@ export default function Sidebar({ role }: Props) {
             );
           }
 
+          if (isStudent) {
+            return (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={
+                  active
+                    ? "flex items-center gap-3 rounded-xl bg-indigo-100 p-3 text-sm font-medium text-indigo-700 shadow-sm"
+                    : "flex items-center gap-3 rounded-xl p-3 text-sm font-medium text-slate-500 transition-all hover:bg-indigo-50 hover:text-indigo-600"
+                }
+              >
+                <span className="material-symbols-outlined text-[20px]">
+                  {item.icon}
+                </span>
+                <span>{item.name}</span>
+              </Link>
+            );
+          }
+
           // ✅ admin/student giữ nguyên UI cũ của bạn
           return (
             <Link
@@ -127,16 +173,31 @@ export default function Sidebar({ role }: Props) {
       </nav>
 
       {/* Bottom - giữ nguyên */}
-      <div className="px-2 border-t pt-4 space-y-1">
+      <div
+        className={[
+          "mt-auto space-y-1 pt-4",
+          isStudent ? "px-4" : "px-2 border-t",
+        ].join(" ")}
+      >
         <Link
           href="/settings"
-          className="mx-2 px-4 py-3 flex items-center gap-3 rounded-full text-sm text-gray-700 hover:bg-slate-200"
+          className={
+            isStudent
+              ? "flex items-center gap-3 rounded-xl p-3 text-sm font-medium text-slate-500 transition hover:bg-indigo-50 hover:text-indigo-600"
+              : "mx-2 flex items-center gap-3 rounded-full px-4 py-3 text-sm text-gray-700 hover:bg-slate-200"
+          }
         >
           <span className="material-symbols-outlined">settings</span>
           Settings
         </Link>
 
-        <button className="mx-2 px-4 py-3 flex items-center gap-3 rounded-full text-sm text-red-600 hover:bg-red-50 w-full">
+        <button
+          className={
+            isStudent
+              ? "flex w-full items-center gap-3 rounded-xl p-3 text-sm font-medium text-red-600 transition hover:bg-red-50"
+              : "mx-2 flex w-full items-center gap-3 rounded-full px-4 py-3 text-sm text-red-600 hover:bg-red-50"
+          }
+        >
           <span className="material-symbols-outlined">logout</span>
           Logout
         </button>

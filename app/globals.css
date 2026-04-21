@@ -36,6 +36,7 @@ body {
 
 .no-scrollbar {
   -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Auto-hide scrollbars: hidden by default, visible while scrolling */
